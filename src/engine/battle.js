@@ -58,3 +58,4 @@ export function executarBatalha(criaturas) {
   }
   return vitoria;
 }
+

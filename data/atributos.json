@@ -2,9 +2,32 @@
   "elementos": ["Fogo", "Agua", "Terra", "Ar", "Raio", "Gelo", "Luz", "Sombra", "Fisico"],
   "nivel": {
     "minimo": 1,
-    "maximo": 100,
+    "maximo": 1000,
     "inicialJogador": { "min": 1, "max": 5 },
-    "curvaXp": { "tipo": "geometrica", "razao": 1.25 }
+    "curvaXp": { "tipo": "quadratica", "multiplicador": 10, "fatorPorVinculo": 1.5 }
+  },
+  "vinculo": {
+    "minimo": 1,
+    "maximo": 20,
+    "nivelPorVinculo": 50
+  },
+  "estagios": [
+    { "id": "bebe",        "nome": "Bebê",        "nivelMinimo": 1,   "diasMinimos": 0 },
+    { "id": "crianca",     "nome": "Criança",     "nivelMinimo": 10,  "diasMinimos": 5 },
+    { "id": "adolescente", "nome": "Adolescente", "nivelMinimo": 30,  "diasMinimos": 20 },
+    { "id": "adulto",      "nome": "Adulto",      "nivelMinimo": 100, "diasMinimos": 50 },
+    { "id": "anciao",     "nome": "Ancião",      "nivelMinimo": 200, "diasMinimos": 100 },
+    { "id": "semideus",    "nome": "Semideus",    "nivelMinimo": 500, "diasMinimos": 300 }
+  ],
+  "evolucao": {
+    "multiplicador": 1.5,
+    "arredondamento": "baixo",
+    "aplicaEm": "todos",
+    "porEstagioCruzado": true
+  },
+  "tempo": {
+    "segundosPorDia": 600,
+    "limiteInatividadeSegundos": 60
   },
   "atributos": {
     "vida":           { "base": { "min": 20, "max": 50 },   "porNivel": { "min": 1, "max": 10 } },
