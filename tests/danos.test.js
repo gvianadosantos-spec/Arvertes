@@ -15,7 +15,6 @@ describe('dano normal', () => {
     const golpe = { tipo: 'normal', ataqueGolpe: 0.8 };
     const defensor = { defesa: 10 };
 
-    // 25 × 0,8 = 20; 20 − 10 = 10
     expect(calcularDanoNormal(atacante, golpe, defensor)).toBe(10);
   });
 
@@ -24,7 +23,6 @@ describe('dano normal', () => {
     const golpe = { tipo: 'normal', ataqueGolpe: 1 };
     const defensor = { defesa: 20 };
 
-    // 5 − 20 = −15, sobe para 1
     expect(calcularDanoNormal(atacante, golpe, defensor)).toBe(1);
   });
 
@@ -33,7 +31,6 @@ describe('dano normal', () => {
     const golpe = { tipo: 'normal', ataqueGolpe: 0.85 };
     const defensor = { defesa: 10 };
 
-    // 25 × 0,85 = 21,25; 21,25 − 10 = 11,25; arredondado para baixo = 11
     expect(calcularDanoNormal(atacante, golpe, defensor)).toBe(11);
   });
 
@@ -42,7 +39,6 @@ describe('dano normal', () => {
     const golpe = { tipo: 'normal', ataqueGolpe: 0 };
     const defensor = { defesa: 10 };
 
-    // 25 × 0 = 0; 0 − 10 = −10, sobe para 1
     expect(calcularDanoNormal(atacante, golpe, defensor)).toBe(1);
   });
 
@@ -51,7 +47,6 @@ describe('dano normal', () => {
     const golpe = { tipo: 'normal', ataqueGolpe: 1 };
     const defensor = { defesa: 25 };
 
-    // 25 − 25 = 0, sobe para 1
     expect(calcularDanoNormal(atacante, golpe, defensor)).toBe(1);
   });
 
@@ -60,7 +55,6 @@ describe('dano normal', () => {
     const golpe = { tipo: 'normal', ataqueGolpe: 1.5 };
     const defensor = { defesa: 12 };
 
-    // 20 × 1,5 = 30; 30 − 12 = 18
     expect(calcularDanoNormal(atacante, golpe, defensor)).toBe(18);
   });
 
@@ -78,7 +72,6 @@ describe('dano elemental', () => {
     const golpe = { tipo: 'elemental', elemento: 'Agua', afinidadeGolpe: 1 };
     const defensor = { elemento: 'Fogo', defesaElemento: 10 };
 
-    // 20 × 1 × 1 = 20; 20 × 1,5 = 30; 30 − 10 = 20
     expect(calcularDanoElemental(atacante, golpe, defensor)).toBe(20);
   });
 
@@ -87,7 +80,6 @@ describe('dano elemental', () => {
     const golpe = { tipo: 'elemental', elemento: 'Fogo', afinidadeGolpe: 1 };
     const defensor = { elemento: 'Raio', defesaElemento: 10 };
 
-    // 20 × 1 = 20; 20 − 10 = 10
     expect(calcularDanoElemental(atacante, golpe, defensor)).toBe(10);
   });
 
@@ -96,7 +88,6 @@ describe('dano elemental', () => {
     const golpe = { tipo: 'elemental', elemento: 'Agua', afinidadeGolpe: 1 };
     const defensor = { elemento: 'Gelo', defesaElemento: 10 };
 
-    // 40 × 0,5 = 20; 20 − 10 = 10
     expect(calcularDanoElemental(atacante, golpe, defensor)).toBe(10);
   });
 
@@ -105,7 +96,6 @@ describe('dano elemental', () => {
     const golpe = { tipo: 'elemental', elemento: 'Fogo', afinidadeGolpe: 1 };
     const defensor = { elemento: 'Raio', defesaElemento: 30 };
 
-    // 20 − 30 = −10; sobe para 1
     expect(calcularDanoElemental(atacante, golpe, defensor)).toBe(1);
   });
 
@@ -114,7 +104,6 @@ describe('dano elemental', () => {
     const golpe = { tipo: 'elemental', elemento: 'Fogo', afinidadeGolpe: 1 };
     const defensor = { elemento: 'Raio', defesaElemento: 5 };
 
-    // 20 × 0,5 = 10; 10 − 5 = 5
     expect(calcularDanoElemental(atacante, golpe, defensor)).toBe(5);
   });
 
@@ -123,7 +112,6 @@ describe('dano elemental', () => {
     const golpe = { tipo: 'elemental', elemento: 'Fogo', afinidadeGolpe: 0.5 };
     const defensor = { elemento: 'Raio', defesaElemento: 5 };
 
-    // 20 × 0,5 = 10; 10 − 5 = 5
     expect(calcularDanoElemental(atacante, golpe, defensor)).toBe(5);
   });
 });
@@ -134,9 +122,6 @@ describe('dano híbrido', () => {
     const golpe = { tipo: 'hibrido', elemento: 'Fogo', ataqueGolpe: 1, afinidadeGolpe: 0.5 };
     const defensor = { elemento: 'Raio', defesa: 10, defesaElemento: 5 };
 
-    // física: 25 × 1 − 10 = 15
-    // elemental: 20 × 1 × 0,5 = 10; 10 − 5 = 5
-    // total: 15 + 5 = 20
     expect(calcularDanoHibrido(atacante, golpe, defensor)).toBe(20);
   });
 
@@ -145,8 +130,6 @@ describe('dano híbrido', () => {
     const golpe = { tipo: 'hibrido', elemento: 'Fogo', ataqueGolpe: 1, afinidadeGolpe: 0.5 };
     const defensor = { elemento: 'Raio', defesa: 10, defesaElemento: 10 };
 
-    // física: 15; elemental: 10 − 10 = 0
-    // total: 15
     expect(calcularDanoHibrido(atacante, golpe, defensor)).toBe(15);
   });
 
@@ -155,8 +138,6 @@ describe('dano híbrido', () => {
     const golpe = { tipo: 'hibrido', elemento: 'Fogo', ataqueGolpe: 1, afinidadeGolpe: 0.5 };
     const defensor = { elemento: 'Raio', defesa: 10, defesaElemento: 30 };
 
-    // física: 15; elemental: 10 − 30 = −20, tratada como 0
-    // total: 15
     expect(calcularDanoHibrido(atacante, golpe, defensor)).toBe(15);
   });
 
@@ -165,9 +146,6 @@ describe('dano híbrido', () => {
     const golpe = { tipo: 'hibrido', elemento: 'Fogo', ataqueGolpe: 1, afinidadeGolpe: 0.5 };
     const defensor = { elemento: 'Raio', defesa: 20, defesaElemento: 1 };
 
-    // física: 5 − 20 = −15, sobe para 1
-    // elemental: 10 − 1 = 9
-    // total: 1 + 9 = 10
     expect(calcularDanoHibrido(atacante, golpe, defensor)).toBe(10);
   });
 
@@ -176,9 +154,6 @@ describe('dano híbrido', () => {
     const golpe = { tipo: 'hibrido', elemento: 'Agua', ataqueGolpe: 1, afinidadeGolpe: 0.5 };
     const defensor = { elemento: 'Fogo', defesa: 10, defesaElemento: 5 };
 
-    // física: 25 − 10 = 15
-    // elemental: 10 × 1,5 = 15; 15 − 5 = 10
-    // total: 25
     expect(calcularDanoHibrido(atacante, golpe, defensor)).toBe(25);
   });
 });

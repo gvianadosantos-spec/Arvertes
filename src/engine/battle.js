@@ -1,4 +1,4 @@
-export function GetTurnOrder(creatures) { // Função que recebe uma lista de criaturas e retorna a lista ordenada pela velocidade (speed) em ordem decrescente  
+export function GetTurnOrder(creatures) { 
     return [...creatures].sort((a, b) => {
         if (b.velocidade !== a.velocidade) {
              return b.velocidade - a.velocidade;

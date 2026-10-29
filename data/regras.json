@@ -1,0 +1,22 @@
+{
+  "dano": {
+    "multiplicadorSuperior": 1.5,
+    "multiplicadorNeutro": 1,
+    "multiplicadorInferior": 0.5,
+    "pisoElementalPuro": 1
+  },
+  "folego": {
+    "recuperacaoVitoria": 1
+  },
+  "resistencia": {
+    "desgastePorRodada": 1
+  },
+  "acerto": {
+    "sorteioMinimo": 1,
+    "sorteioMaximo": 100
+  },
+  "fuga": {
+  "pisoChance": 10,
+  "tetoChance": 90
+}
+}

@@ -11,15 +11,13 @@ export function createArverte(
   modificadorAtributos = {},
   tabela = atributos.atributos,
 ) {
-  // Sorteia dentro da faixa base do atributo e aplica o modificador da espécie.
-  // Arredonda para baixo. Atributo ausente no modificador vale 1.
+  
   const sortear = (atributo) => {
     const { min, max } = tabela[atributo].base;
     const fator = modificadorAtributos[atributo] ?? 1;
     return Math.floor(sortearEntre(random, min, max) * fator);
   };
 
-  // A ordem dos sorteios não pode mudar: os testes de determinismo dependem dela.
   return {
     nome,
     ehJogador,

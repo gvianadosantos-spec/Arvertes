@@ -1,16 +1,16 @@
 import { relacaoElemento } from './elementos.js';
+import regras from '../../data/regras.json' with { type: 'json' };
 
 const multiplicadorRelacao = {
-  superior: 1.5,
-  neutro: 1,
-  inferior: 0.5,
+  superior: regras.dano.multiplicadorSuperior,
+  neutro: regras.dano.multiplicadorNeutro,
+  inferior: regras.dano.multiplicadorInferior,
 };
 
 export function calcularDanoNormal(atacante, golpe, defensor) {
   return Math.max(Math.floor(atacante.ataque * golpe.ataqueGolpe - defensor.defesa), 1);
 }
 
-// Sem piso: pode dar zero ou negativo. O híbrido usa isso e trata valores abaixo de zero como zero.
 function danoElementalSemPiso(atacante, golpe, defensor) {
   const forca = atacante.ataqueElemento * atacante.afinidade * golpe.afinidadeGolpe;
   const relacao = relacaoElemento(golpe.elemento, defensor.elemento);
@@ -19,7 +19,7 @@ function danoElementalSemPiso(atacante, golpe, defensor) {
 }
 
 export function calcularDanoElemental(atacante, golpe, defensor) {
-  return Math.max(danoElementalSemPiso(atacante, golpe, defensor), 1);
+  return Math.max(danoElementalSemPiso(atacante, golpe, defensor), regras.dano.pisoElementalPuro);
 }
 
 export function calcularDanoHibrido(atacante, golpe, defensor) {
