@@ -4,6 +4,7 @@ import { golpeAcerta } from "./acerto.js";
 import { escolherAcao, gastarFolego } from "./folego.js";
 import { desgastarResistencia } from "./resistencia.js";
 import { relacaoElemento } from "./elementos.js";
+import { chanceFuga, tentarFuga } from "./fuga.js";
 
 const danoDoGolpe = {
   normal: calcularDanoNormal,
@@ -54,10 +55,15 @@ export function executarTurno({ jogador, robo, acaoJogador, acaoRobo, random }) 
     const outro = quem === "jogador" ? "robo" : "jogador";
     const acao = acoes[quem];
 
-    if (acao === "fugir") {
-      eventos.push({ quem, acao: "fuga", golpeId: null, acertou: false, dano: 0, relacao: null });
-      return { ...estado, eventos, resultado: "fuga" };
-    }
+  if (acao === "fugir") {
+  const chance = chanceFuga(estado[quem].velocidade, estado[outro].velocidade);
+  if (tentarFuga(chance, random)) {
+    eventos.push({ quem, acao: "fuga", golpeId: null, acertou: false, dano: 0, relacao: null });
+    return { ...estado, eventos, resultado: "fuga" };
+  }
+  eventos.push({ quem, acao: "fuga_falhou", golpeId: null, acertou: false, dano: 0, relacao: null });
+  continue;
+}
 
     const r = agir(quem, estado[quem], estado[outro], acao, random);
     estado = { ...estado, [quem]: r.atacante, [outro]: r.defensor };

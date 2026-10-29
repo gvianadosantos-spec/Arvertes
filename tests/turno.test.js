@@ -58,13 +58,13 @@ describe("etapa C: turno com ação escolhida", () => {
     expect(r.jogador.folego).toBe(2);
   });
 
-  it("jogador mais rápido foge: batalha termina com 'fuga' e o robô não age", () => {
-    const r = executarTurno({ jogador: jogador(), robo: robo(), acaoJogador: "fugir", acaoRobo: "basico", random: acerta });
-    expect(r.resultado).toBe("fuga");
-    expect(r.robo.vida).toBe(30);
-    expect(r.jogador.vida).toBe(30);
-    expect(r.robo.folego).toBe(20);
-  });
+it("jogador mais rápido com fuga dentro da chance: batalha termina com 'fuga' e o robô não age", () => {
+  const r = executarTurno({ jogador: jogador(), robo: robo(), acaoJogador: "fugir", acaoRobo: "basico", random: acerta });
+  expect(r.resultado).toBe("fuga");
+  expect(r.robo.vida).toBe(30);
+  expect(r.jogador.vida).toBe(30);
+  expect(r.robo.folego).toBe(20);
+});
 
   it("robô mais rápido derruba o jogador antes da fuga: derrota, sem fuga", () => {
    

@@ -16,7 +16,13 @@
     "sorteioMaximo": 100
   },
   "fuga": {
-  "pisoChance": 10,
-  "tetoChance": 90
-}
+    "pisoChance": 10,
+    "tetoChance": 90
+  },
+  "robo": {
+    "selvagem": {
+      "golpeAleatorio": 40,
+      "golpeMaiorDano": 40
+    }
+  }
 }
