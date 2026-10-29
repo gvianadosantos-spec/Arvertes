@@ -1,29 +1,39 @@
 {
   "elementos": ["Fogo", "Agua", "Terra", "Ar", "Raio", "Gelo", "Luz", "Sombra", "Fisico"],
   "nivel": {
-    "minimo": 1,
-    "maximo": 1000,
+    "sistemaMaximo": 1000,
+    "maximoJogo1": 100,
     "inicialJogador": { "min": 1, "max": 5 },
-    "curvaXp": { "tipo": "quadratica", "multiplicador": 10, "fatorPorVinculo": 1.5 }
+    "curvaXp": { "tipo": "quadratica", "multiplicador": 10, "fatorPorVinculo": 1.5 },
+    "xpPorVitoria": "nivelInimigo * 10",
+    "xpPorCaptura": "nivelInimigo * 7",
+    "xpPorFuga": 0
   },
   "vinculo": {
     "minimo": 1,
-    "maximo": 20,
+    "maximoJogo1": 2,
+    "referenciaProximosJogos": 20,
     "nivelPorVinculo": 50
   },
   "estagios": [
+    { "id": "ovo",         "nome": "Ovo",         "nivelMinimo": 1,   "semBonusEvolucao": true },
     { "id": "bebe",        "nome": "Bebê",        "nivelMinimo": 1,   "diasMinimos": 0 },
     { "id": "crianca",     "nome": "Criança",     "nivelMinimo": 10,  "diasMinimos": 5 },
     { "id": "adolescente", "nome": "Adolescente", "nivelMinimo": 30,  "diasMinimos": 20 },
     { "id": "adulto",      "nome": "Adulto",      "nivelMinimo": 100, "diasMinimos": 50 },
-    { "id": "anciao",     "nome": "Ancião",      "nivelMinimo": 200, "diasMinimos": 100 },
+    { "id": "anciao",      "nome": "Ancião",      "nivelMinimo": 200, "diasMinimos": 100 },
     { "id": "semideus",    "nome": "Semideus",    "nivelMinimo": 500, "diasMinimos": 300 }
   ],
+  "contadoresDias": {
+    "ovo":  { "comeca": 0, "rotulo": "Dias de ovo",  "conta": "desde a postura, até chocar" },
+    "vida": { "comeca": 0, "rotulo": "Dias de vida", "conta": "desde a eclosão" }
+  },
   "evolucao": {
     "multiplicador": 1.5,
     "arredondamento": "baixo",
     "aplicaEm": "todos",
-    "porEstagioCruzado": true
+    "porEstagioCruzado": true,
+    "aPartirDe": "bebe"
   },
   "tempo": {
     "segundosPorDia": 600,
@@ -39,5 +49,6 @@
     "folego":         { "base": { "min": 20, "max": 30 },   "porNivel": { "min": 1, "max": 10 } },
     "resistencia":    { "base": { "min": 200, "max": 300 }, "porNivel": { "min": 1, "max": 10 } }
   },
-  "afinidade": { "min": 0.1, "max": 1.0 }
+  "afinidade": { "min": 0.1, "max": 1.0 },
+  "sexo": { "sorteio": "50/50", "naCriacao": true }
 }

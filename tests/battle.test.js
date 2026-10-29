@@ -170,9 +170,9 @@ describe('determinismo', () => {
       resistencia: 300,
     });
   });
-  it('modificador 0,5 reduz os atributos pela metade', () => {
+   it('modificador 0,5 reduz os atributos pela metade', () => {
     const maximo = criarGeradorFixo([0.9999, 0.9999, 0.9999, 0.9999, 0.9999, 0.9999, 0.9999, 0.9999]);
-    const fraco = createArverte('fraco', maximo, false, 0.5);
+    const fraco = createArverte('fraco', maximo, false, { vida: 0.5, resistencia: 0.5 });
 
     expect(fraco.vida).toBe(25);
     expect(fraco.resistencia).toBe(150);

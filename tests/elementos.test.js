@@ -61,5 +61,8 @@ describe('elemento', () => {
     expect(relacaoElemento('Fisico', 'Agua')).toBe('neutro');
     expect(relacaoElemento('Agua', 'Fisico')).toBe('neutro');
     expect(relacaoElemento('Fisico', 'Luz')).toBe('neutro');
+
+    
   });
 });
+

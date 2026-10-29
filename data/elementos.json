@@ -1,0 +1,17 @@
+{
+  "elementos": ["Fogo", "Agua", "Terra", "Ar", "Raio", "Gelo", "Luz", "Sombra", "Fisico"],
+  "vantagens": [
+    ["Agua", "Fogo"],
+    ["Agua", "Terra"],
+    ["Fogo", "Gelo"],
+    ["Gelo", "Agua"],
+    ["Gelo", "Ar"],
+    ["Raio", "Agua"],
+    ["Raio", "Ar"],
+    ["Terra", "Raio"],
+    ["Terra", "Ar"],
+    ["Ar", "Terra"],
+    ["Luz", "Sombra"],
+    ["Sombra", "Luz"]
+  ]
+}
