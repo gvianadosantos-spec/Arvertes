@@ -5,8 +5,8 @@
     "maximoJogo1": 100,
     "inicialJogador": { "min": 1, "max": 5 },
     "curvaXp": { "tipo": "quadratica", "multiplicador": 10, "fatorPorVinculo": 1.5 },
-    "xpPorVitoria": "nivelInimigo * 10",
-    "xpPorCaptura": "nivelInimigo * 7",
+    "xpPorVitoria": 10,
+    "xpPorCaptura": 7,
     "xpPorFuga": 0
   },
   "vinculo": {

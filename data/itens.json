@@ -1,0 +1,16 @@
+{
+  "atributos": ["vida", "ataque", "defesa", "ataqueElemento", "defesaElemento", "velocidade", "folego", "resistencia"],
+  "niveis": ["muitoFraco", "fraco", "normal", "forte", "muitoForte"],
+  "tamanhos": {
+    "pequeno": { "duracaoTurnos": 3 },
+    "medio": { "duracaoTurnos": 5 },
+    "grande": { "duracaoTurnos": 7 }
+  },
+  "buff": { "muitoFraco": 1.05, "fraco": 1.10, "normal": 1.15, "forte": 1.20, "muitoForte": 1.25 },
+  "debuff": { "muitoFraco": 0.95, "fraco": 0.90, "normal": 0.85, "forte": 0.80, "muitoForte": 0.75 },
+  "pocoes": {
+    "atributos": ["vida", "folego"],
+    "recuperacaoPercentual": { "muitoFraco": 20, "fraco": 40, "normal": 60, "forte": 80, "muitoForte": 100 }
+  },
+  "quantidadePorTipoNoInimigo": 3
+}
