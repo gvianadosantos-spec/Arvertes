@@ -10,12 +10,13 @@ export function createArverte(
   ehJogador = false,
   modificadorAtributos = {},
   tabela = atributos.atributos,
+  fatoresTita = {},
 ) {
-  
   const sortear = (atributo) => {
     const { min, max } = tabela[atributo].base;
     const fator = modificadorAtributos[atributo] ?? 1;
-    return Math.floor(sortearEntre(random, min, max) * fator);
+    const fatorTita = fatoresTita[atributo] ?? 1;
+    return Math.floor(sortearEntre(random, min, max) * fator * fatorTita);
   };
 
   return {

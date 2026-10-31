@@ -22,7 +22,8 @@
     { "id": "adolescente", "nome": "Adolescente", "nivelMinimo": 30,  "diasMinimos": 20 },
     { "id": "adulto",      "nome": "Adulto",      "nivelMinimo": 100, "diasMinimos": 50 },
     { "id": "anciao",      "nome": "Ancião",      "nivelMinimo": 200, "diasMinimos": 100 },
-    { "id": "semideus",    "nome": "Semideus",    "nivelMinimo": 500, "diasMinimos": 300 }
+    { "id": "semideus",    "nome": "Semideus",    "nivelMinimo": 500, "diasMinimos": 300 },
+    { "id": "deus",        "nome": "Deus",        "nivelMinimo": 900, "diasMinimos": 700, "viaDeificacao": true }
   ],
   "contadoresDias": {
     "ovo":  { "comeca": 0, "rotulo": "Dias de ovo",  "conta": "desde a postura, até chocar" },
@@ -35,6 +36,16 @@
     "porEstagioCruzado": true,
     "aPartirDe": "bebe"
   },
+"titaDeificacao": {
+  "chanceTita": 1,
+  "chanceDeificavel": 1,
+  "multiplicadorTita": { "min": 1.5, "max": 2.5 },
+  "multiplicadorTitaDeificavel": { "min": 3, "max": 5 },
+  "regra": "titã com deificação usa multiplicadorTitaDeificavel no lugar de multiplicadorTita",
+  "sorteioPor": "atributo",
+  "aplicaEm": "atributos de combate, altura e peso",
+  "ordem": "modificador da espécie primeiro, titã depois"
+},
   "tempo": {
     "segundosPorDia": 600,
     "limiteInatividadeSegundos": 60

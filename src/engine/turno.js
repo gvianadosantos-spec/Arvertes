@@ -5,6 +5,7 @@ import { escolherAcao, gastarFolego } from "./folego.js";
 import { desgastarResistencia } from "./resistencia.js";
 import { relacaoElemento } from "./elementos.js";
 import { chanceFuga, tentarFuga } from "./fuga.js";
+import { escolherAcaoRobo } from "./robo.js";
 
 const danoDoGolpe = {
   normal: calcularDanoNormal,
@@ -45,8 +46,8 @@ function agir(quem, atacante, defensor, acao, random) {
   };
 }
 
-export function executarTurno({ jogador, robo, acaoJogador, acaoRobo, random }) {
-  const acoes = { jogador: acaoJogador, robo: acaoRobo };
+export function executarTurno({ jogador, robo, acaoJogador, acaoRobo, golpesRobo = [], random }) {
+  const acoes = { jogador: acaoJogador, robo: acaoRobo ?? escolherAcaoRobo(robo, jogador, golpesRobo, random) };
   const ordem = jogador.velocidade >= robo.velocidade ? ["jogador", "robo"] : ["robo", "jogador"];
   let estado = { jogador, robo };
   const eventos = [];

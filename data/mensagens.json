@@ -1,0 +1,16 @@
+{
+  "golpe": {
+    "acertou": "{nome} usou {golpe} e causou {dano} de dano.",
+    "erro": "{nome} usou {golpe}, mas errou."
+  },
+  "basico": {
+    "acertou": "{nome} atacou e causou {dano} de dano."
+  },
+  "fuga": "{nome} fugiu da batalha.",
+  "fuga_falhou": "{nome} tentou fugir, mas não conseguiu.",
+  "relacao": {
+    "superior": " Foi super efetivo.",
+    "neutro": "",
+    "inferior": " Não foi muito efetivo."
+  }
+}

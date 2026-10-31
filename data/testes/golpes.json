@@ -1,40 +1,329 @@
 [
-  { "id": "golpe_fogo_elemental_1", "nome": "Fogo Elemental 1", "tipo": "elemental", "elemento": "Fogo", "ataqueGolpe": 1, "afinidadeGolpe": 1, "chanceAcerto": 100, "custoFolego": 5 },
-{ "id": "golpe_fogo_elemental_2", "nome": "Fogo Elemental 2", "tipo": "elemental", "elemento": "Fogo", "ataqueGolpe": 1, "afinidadeGolpe": 0.5, "chanceAcerto": 66, "custoFolego": 3 },
-{ "id": "golpe_fogo_elemental_3", "nome": "Fogo Elemental 3", "tipo": "elemental", "elemento": "Fogo", "ataqueGolpe": 1, "afinidadeGolpe": 0.35, "chanceAcerto": 33, "custoFolego": 6 },
-{ "id": "golpe_fogo_hibrido_1", "nome": "Fogo Híbrido 1", "tipo": "hibrido", "elemento": "Fogo", "ataqueGolpe": 1, "afinidadeGolpe": 1, "chanceAcerto": 100, "custoFolego": 4 },
-{ "id": "golpe_fogo_hibrido_2", "nome": "Fogo Híbrido 2", "tipo": "hibrido", "elemento": "Fogo", "ataqueGolpe": 1, "afinidadeGolpe": 0.5, "chanceAcerto": 66, "custoFolego": 7 },
-{ "id": "golpe_fogo_hibrido_3", "nome": "Fogo Híbrido 3", "tipo": "hibrido", "elemento": "Fogo", "ataqueGolpe": 1, "afinidadeGolpe": 0.35, "chanceAcerto": 33, "custoFolego": 3 },
-
-{ "id": "golpe_agua_elemental_1", "nome": "Água Elemental 1", "tipo": "elemental", "elemento": "Agua", "ataqueGolpe": 1, "afinidadeGolpe": 1, "chanceAcerto": 100, "custoFolego": 6 },
-{ "id": "golpe_agua_elemental_2", "nome": "Água Elemental 2", "tipo": "elemental", "elemento": "Agua", "ataqueGolpe": 1, "afinidadeGolpe": 0.5, "chanceAcerto": 66, "custoFolego": 4 },
-{ "id": "golpe_agua_elemental_3", "nome": "Água Elemental 3", "tipo": "elemental", "elemento": "Agua", "ataqueGolpe": 1, "afinidadeGolpe": 0.35, "chanceAcerto": 33, "custoFolego": 3 },
-{ "id": "golpe_agua_hibrido_1", "nome": "Água Híbrido 1", "tipo": "hibrido", "elemento": "Agua", "ataqueGolpe": 1, "afinidadeGolpe": 1, "chanceAcerto": 100, "custoFolego": 5 },
-{ "id": "golpe_agua_hibrido_2", "nome": "Água Híbrido 2", "tipo": "hibrido", "elemento": "Agua", "ataqueGolpe": 1, "afinidadeGolpe": 0.5, "chanceAcerto": 66, "custoFolego": 7 },
-{ "id": "golpe_agua_hibrido_3", "nome": "Água Híbrido 3", "tipo": "hibrido", "elemento": "Agua", "ataqueGolpe": 1, "afinidadeGolpe": 0.35, "chanceAcerto": 33, "custoFolego": 4 },
-
-{ "id": "golpe_terra_elemental_1", "nome": "Terra Elemental 1", "tipo": "elemental", "elemento": "Terra", "ataqueGolpe": 1, "afinidadeGolpe": 1, "chanceAcerto": 100, "custoFolego": 3 },
-{ "id": "golpe_terra_elemental_2", "nome": "Terra Elemental 2", "tipo": "elemental", "elemento": "Terra", "ataqueGolpe": 1, "afinidadeGolpe": 0.5, "chanceAcerto": 66, "custoFolego": 7 },
-{ "id": "golpe_terra_elemental_3", "nome": "Terra Elemental 3", "tipo": "elemental", "elemento": "Terra", "ataqueGolpe": 1, "afinidadeGolpe": 0.35, "chanceAcerto": 33, "custoFolego": 5 },
-{ "id": "golpe_terra_hibrido_1", "nome": "Terra Híbrido 1", "tipo": "hibrido", "elemento": "Terra", "ataqueGolpe": 1, "afinidadeGolpe": 1, "chanceAcerto": 100, "custoFolego": 6 },
-{ "id": "golpe_terra_hibrido_2", "nome": "Terra Híbrido 2", "tipo": "hibrido", "elemento": "Terra", "ataqueGolpe": 1, "afinidadeGolpe": 0.5, "chanceAcerto": 66, "custoFolego": 4 },
-{ "id": "golpe_terra_hibrido_3", "nome": "Terra Híbrido 3", "tipo": "hibrido", "elemento": "Terra", "ataqueGolpe": 1, "afinidadeGolpe": 0.35, "chanceAcerto": 33, "custoFolego": 5 },
-
-{ "id": "golpe_ar_elemental_1", "nome": "Ar Elemental 1", "tipo": "elemental", "elemento": "Ar", "ataqueGolpe": 1, "afinidadeGolpe": 1, "chanceAcerto": 100, "custoFolego": 7 },
-{ "id": "golpe_ar_elemental_2", "nome": "Ar Elemental 2", "tipo": "elemental", "elemento": "Ar", "ataqueGolpe": 1, "afinidadeGolpe": 0.5, "chanceAcerto": 66, "custoFolego": 5 },
-{ "id": "golpe_ar_elemental_3", "nome": "Ar Elemental 3", "tipo": "elemental", "elemento": "Ar", "ataqueGolpe": 1, "afinidadeGolpe": 0.35, "chanceAcerto": 33, "custoFolego": 4 },
-{ "id": "golpe_ar_hibrido_1", "nome": "Ar Híbrido 1", "tipo": "hibrido", "elemento": "Ar", "ataqueGolpe": 1, "afinidadeGolpe": 1, "chanceAcerto": 100, "custoFolego": 3 },
-{ "id": "golpe_ar_hibrido_2", "nome": "Ar Híbrido 2", "tipo": "hibrido", "elemento": "Ar", "ataqueGolpe": 1, "afinidadeGolpe": 0.5, "chanceAcerto": 66, "custoFolego": 6 },
-{ "id": "golpe_ar_hibrido_3", "nome": "Ar Híbrido 3", "tipo": "hibrido", "elemento": "Ar", "ataqueGolpe": 1, "afinidadeGolpe": 0.35, "chanceAcerto": 33, "custoFolego": 7 },
-
-{ "id": "golpe_raio_elemental_1", "nome": "Raio Elemental 1", "tipo": "elemental", "elemento": "Raio", "ataqueGolpe": 1, "afinidadeGolpe": 1, "chanceAcerto": 100, "custoFolego": 4 },
-{ "id": "golpe_raio_elemental_2", "nome": "Raio Elemental 2", "tipo": "elemental", "elemento": "Raio", "ataqueGolpe": 1, "afinidadeGolpe": 0.5, "chanceAcerto": 66, "custoFolego": 6 },
-{ "id": "golpe_raio_elemental_3", "nome": "Raio Elemental 3", "tipo": "elemental", "elemento": "Raio", "ataqueGolpe": 1, "afinidadeGolpe": 0.35, "chanceAcerto": 33, "custoFolego": 3 },
-{ "id": "golpe_raio_hibrido_1", "nome": "Raio Híbrido 1", "tipo": "hibrido", "elemento": "Raio", "ataqueGolpe": 1, "afinidadeGolpe": 1, "chanceAcerto": 100, "custoFolego": 5 },
-{ "id": "golpe_raio_hibrido_2", "nome": "Raio Híbrido 2", "tipo": "hibrido", "elemento": "Raio", "ataqueGolpe": 1, "afinidadeGolpe": 0.5, "chanceAcerto": 66, "custoFolego": 3 },
-{ "id": "golpe_raio_hibrido_3", "nome": "Raio Híbrido 3", "tipo": "hibrido", "elemento": "Raio", "ataqueGolpe": 1, "afinidadeGolpe": 0.35, "chanceAcerto": 33, "custoFolego": 6 },
-
-{ "id": "golpe_normal_1", "nome": "Golpe Normal 1", "tipo": "normal", "ataqueGolpe": 1, "afinidadeGolpe": 1, "chanceAcerto": 100, "custoFolego": 4 },
-{ "id": "golpe_normal_2", "nome": "Golpe Normal 2", "tipo": "normal", "ataqueGolpe": 1, "afinidadeGolpe": 1, "chanceAcerto": 66, "custoFolego": 6 },
-{ "id": "golpe_normal_3", "nome": "Golpe Normal 3", "tipo": "normal", "ataqueGolpe": 1, "afinidadeGolpe": 1, "chanceAcerto": 33, "custoFolego": 5 }
+  {
+    "id": "golpe_fogo_elemental_1",
+    "nome": "Fogo Elemental 1",
+    "tipo": "elemental",
+    "elemento": "Fogo",
+    "ataqueGolpe": 0.8,
+    "afinidadeGolpe": 1,
+    "chanceAcerto": 100,
+    "custoFolego": 5
+  },
+  {
+    "id": "golpe_fogo_elemental_2",
+    "nome": "Fogo Elemental 2",
+    "tipo": "elemental",
+    "elemento": "Fogo",
+    "ataqueGolpe": 1.12,
+    "afinidadeGolpe": 0.5,
+    "chanceAcerto": 66,
+    "custoFolego": 3
+  },
+  {
+    "id": "golpe_fogo_elemental_3",
+    "nome": "Fogo Elemental 3",
+    "tipo": "elemental",
+    "elemento": "Fogo",
+    "ataqueGolpe": 1.34,
+    "afinidadeGolpe": 0.35,
+    "chanceAcerto": 33,
+    "custoFolego": 6
+  },
+  {
+    "id": "golpe_fogo_hibrido_1",
+    "nome": "Fogo Híbrido 1",
+    "tipo": "hibrido",
+    "elemento": "Fogo",
+    "ataqueGolpe": 1.32,
+    "afinidadeGolpe": 1,
+    "chanceAcerto": 100,
+    "custoFolego": 4
+  },
+  {
+    "id": "golpe_fogo_hibrido_2",
+    "nome": "Fogo Híbrido 2",
+    "tipo": "hibrido",
+    "elemento": "Fogo",
+    "ataqueGolpe": 1.21,
+    "afinidadeGolpe": 0.5,
+    "chanceAcerto": 66,
+    "custoFolego": 7
+  },
+  {
+    "id": "golpe_fogo_hibrido_3",
+    "nome": "Fogo Híbrido 3",
+    "tipo": "hibrido",
+    "elemento": "Fogo",
+    "ataqueGolpe": 0.82,
+    "afinidadeGolpe": 0.35,
+    "chanceAcerto": 33,
+    "custoFolego": 3
+  },
+  {
+    "id": "golpe_agua_elemental_1",
+    "nome": "Água Elemental 1",
+    "tipo": "elemental",
+    "elemento": "Agua",
+    "ataqueGolpe": 1.13,
+    "afinidadeGolpe": 1,
+    "chanceAcerto": 100,
+    "custoFolego": 6
+  },
+  {
+    "id": "golpe_agua_elemental_2",
+    "nome": "Água Elemental 2",
+    "tipo": "elemental",
+    "elemento": "Agua",
+    "ataqueGolpe": 0.84,
+    "afinidadeGolpe": 0.5,
+    "chanceAcerto": 66,
+    "custoFolego": 4
+  },
+  {
+    "id": "golpe_agua_elemental_3",
+    "nome": "Água Elemental 3",
+    "tipo": "elemental",
+    "elemento": "Agua",
+    "ataqueGolpe": 0.64,
+    "afinidadeGolpe": 0.35,
+    "chanceAcerto": 33,
+    "custoFolego": 3
+  },
+  {
+    "id": "golpe_agua_hibrido_1",
+    "nome": "Água Híbrido 1",
+    "tipo": "hibrido",
+    "elemento": "Agua",
+    "ataqueGolpe": 0.9,
+    "afinidadeGolpe": 1,
+    "chanceAcerto": 100,
+    "custoFolego": 5
+  },
+  {
+    "id": "golpe_agua_hibrido_2",
+    "nome": "Água Híbrido 2",
+    "tipo": "hibrido",
+    "elemento": "Agua",
+    "ataqueGolpe": 0.5,
+    "afinidadeGolpe": 0.5,
+    "chanceAcerto": 66,
+    "custoFolego": 7
+  },
+  {
+    "id": "golpe_agua_hibrido_3",
+    "nome": "Água Híbrido 3",
+    "tipo": "hibrido",
+    "elemento": "Agua",
+    "ataqueGolpe": 0.83,
+    "afinidadeGolpe": 0.35,
+    "chanceAcerto": 33,
+    "custoFolego": 4
+  },
+  {
+    "id": "golpe_terra_elemental_1",
+    "nome": "Terra Elemental 1",
+    "tipo": "elemental",
+    "elemento": "Terra",
+    "ataqueGolpe": 1.46,
+    "afinidadeGolpe": 1,
+    "chanceAcerto": 100,
+    "custoFolego": 3
+  },
+  {
+    "id": "golpe_terra_elemental_2",
+    "nome": "Terra Elemental 2",
+    "tipo": "elemental",
+    "elemento": "Terra",
+    "ataqueGolpe": 0.66,
+    "afinidadeGolpe": 0.5,
+    "chanceAcerto": 66,
+    "custoFolego": 7
+  },
+  {
+    "id": "golpe_terra_elemental_3",
+    "nome": "Terra Elemental 3",
+    "tipo": "elemental",
+    "elemento": "Terra",
+    "ataqueGolpe": 1.09,
+    "afinidadeGolpe": 0.35,
+    "chanceAcerto": 33,
+    "custoFolego": 5
+  },
+  {
+    "id": "golpe_terra_hibrido_1",
+    "nome": "Terra Híbrido 1",
+    "tipo": "hibrido",
+    "elemento": "Terra",
+    "ataqueGolpe": 1.19,
+    "afinidadeGolpe": 1,
+    "chanceAcerto": 100,
+    "custoFolego": 6
+  },
+  {
+    "id": "golpe_terra_hibrido_2",
+    "nome": "Terra Híbrido 2",
+    "tipo": "hibrido",
+    "elemento": "Terra",
+    "ataqueGolpe": 1.18,
+    "afinidadeGolpe": 0.5,
+    "chanceAcerto": 66,
+    "custoFolego": 4
+  },
+  {
+    "id": "golpe_terra_hibrido_3",
+    "nome": "Terra Híbrido 3",
+    "tipo": "hibrido",
+    "elemento": "Terra",
+    "ataqueGolpe": 0.76,
+    "afinidadeGolpe": 0.35,
+    "chanceAcerto": 33,
+    "custoFolego": 5
+  },
+  {
+    "id": "golpe_ar_elemental_1",
+    "nome": "Ar Elemental 1",
+    "tipo": "elemental",
+    "elemento": "Ar",
+    "ataqueGolpe": 1.18,
+    "afinidadeGolpe": 1,
+    "chanceAcerto": 100,
+    "custoFolego": 7
+  },
+  {
+    "id": "golpe_ar_elemental_2",
+    "nome": "Ar Elemental 2",
+    "tipo": "elemental",
+    "elemento": "Ar",
+    "ataqueGolpe": 0.7,
+    "afinidadeGolpe": 0.5,
+    "chanceAcerto": 66,
+    "custoFolego": 5
+  },
+  {
+    "id": "golpe_ar_elemental_3",
+    "nome": "Ar Elemental 3",
+    "tipo": "elemental",
+    "elemento": "Ar",
+    "ataqueGolpe": 0.7,
+    "afinidadeGolpe": 0.35,
+    "chanceAcerto": 33,
+    "custoFolego": 4
+  },
+  {
+    "id": "golpe_ar_hibrido_1",
+    "nome": "Ar Híbrido 1",
+    "tipo": "hibrido",
+    "elemento": "Ar",
+    "ataqueGolpe": 1.22,
+    "afinidadeGolpe": 1,
+    "chanceAcerto": 100,
+    "custoFolego": 3
+  },
+  {
+    "id": "golpe_ar_hibrido_2",
+    "nome": "Ar Híbrido 2",
+    "tipo": "hibrido",
+    "elemento": "Ar",
+    "ataqueGolpe": 0.6,
+    "afinidadeGolpe": 0.5,
+    "chanceAcerto": 66,
+    "custoFolego": 6
+  },
+  {
+    "id": "golpe_ar_hibrido_3",
+    "nome": "Ar Híbrido 3",
+    "tipo": "hibrido",
+    "elemento": "Ar",
+    "ataqueGolpe": 0.73,
+    "afinidadeGolpe": 0.35,
+    "chanceAcerto": 33,
+    "custoFolego": 7
+  },
+  {
+    "id": "golpe_raio_elemental_1",
+    "nome": "Raio Elemental 1",
+    "tipo": "elemental",
+    "elemento": "Raio",
+    "ataqueGolpe": 0.55,
+    "afinidadeGolpe": 1,
+    "chanceAcerto": 100,
+    "custoFolego": 4
+  },
+  {
+    "id": "golpe_raio_elemental_2",
+    "nome": "Raio Elemental 2",
+    "tipo": "elemental",
+    "elemento": "Raio",
+    "ataqueGolpe": 1.05,
+    "afinidadeGolpe": 0.5,
+    "chanceAcerto": 66,
+    "custoFolego": 6
+  },
+  {
+    "id": "golpe_raio_elemental_3",
+    "nome": "Raio Elemental 3",
+    "tipo": "elemental",
+    "elemento": "Raio",
+    "ataqueGolpe": 0.95,
+    "afinidadeGolpe": 0.35,
+    "chanceAcerto": 33,
+    "custoFolego": 3
+  },
+  {
+    "id": "golpe_raio_hibrido_1",
+    "nome": "Raio Híbrido 1",
+    "tipo": "hibrido",
+    "elemento": "Raio",
+    "ataqueGolpe": 1.16,
+    "afinidadeGolpe": 1,
+    "chanceAcerto": 100,
+    "custoFolego": 5
+  },
+  {
+    "id": "golpe_raio_hibrido_2",
+    "nome": "Raio Híbrido 2",
+    "tipo": "hibrido",
+    "elemento": "Raio",
+    "ataqueGolpe": 1.14,
+    "afinidadeGolpe": 0.5,
+    "chanceAcerto": 66,
+    "custoFolego": 3
+  },
+  {
+    "id": "golpe_raio_hibrido_3",
+    "nome": "Raio Híbrido 3",
+    "tipo": "hibrido",
+    "elemento": "Raio",
+    "ataqueGolpe": 0.6,
+    "afinidadeGolpe": 0.35,
+    "chanceAcerto": 33,
+    "custoFolego": 6
+  },
+  {
+    "id": "golpe_normal_1",
+    "nome": "Golpe Normal 1",
+    "tipo": "normal",
+    "ataqueGolpe": 1.36,
+    "afinidadeGolpe": 1,
+    "chanceAcerto": 100,
+    "custoFolego": 4
+  },
+  {
+    "id": "golpe_normal_2",
+    "nome": "Golpe Normal 2",
+    "tipo": "normal",
+    "ataqueGolpe": 0.54,
+    "afinidadeGolpe": 1,
+    "chanceAcerto": 66,
+    "custoFolego": 6
+  },
+  {
+    "id": "golpe_normal_3",
+    "nome": "Golpe Normal 3",
+    "tipo": "normal",
+    "ataqueGolpe": 1.4,
+    "afinidadeGolpe": 1,
+    "chanceAcerto": 33,
+    "custoFolego": 5
+  }
 ]
