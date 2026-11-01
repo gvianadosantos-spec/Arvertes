@@ -1,3 +1,5 @@
+import { valorEfetivo } from "./efeitos.js";
+
 export function GetTurnOrder(creatures) { 
     return [...creatures].sort((a, b) => {
         if (b.velocidade !== a.velocidade) {
@@ -13,9 +15,6 @@ export function GetTurnOrder(creatures) {
      });
 }
 
-export function calcularDano(atacante, defensor) {
-  return Math.max(atacante.ataque - defensor.defesa, 1);
-}
 
 export function executarRodada(criaturas) {
   const [primeiro, segundo] = GetTurnOrder(criaturas);
@@ -59,3 +58,6 @@ export function executarBatalha(criaturas) {
   return vitoria;
 }
 
+export function calcularDano(atacante, defensor) {
+  return Math.max(valorEfetivo(atacante, "ataque") - valorEfetivo(defensor, "defesa"), 1);
+}

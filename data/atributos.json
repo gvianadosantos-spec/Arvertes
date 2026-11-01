@@ -7,7 +7,8 @@
     "curvaXp": { "tipo": "quadratica", "multiplicador": 10, "fatorPorVinculo": 1.5 },
     "xpPorVitoria": 10,
     "xpPorCaptura": 7,
-    "xpPorFuga": 0
+    "xpPorFuga": 0,
+    "xpAtivaFracao": 0.5
   },
   "vinculo": {
     "minimo": 1,

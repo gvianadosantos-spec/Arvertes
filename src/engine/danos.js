@@ -1,5 +1,6 @@
-import { relacaoElemento } from './elementos.js';
-import regras from '../../data/regras.json' with { type: 'json' };
+import { relacaoElemento } from "./elementos.js";
+import { valorEfetivo } from "./efeitos.js";
+import regras from "../../data/regras.json" with { type: "json" };
 
 const multiplicadorRelacao = {
   superior: regras.dano.multiplicadorSuperior,
@@ -8,14 +9,14 @@ const multiplicadorRelacao = {
 };
 
 export function calcularDanoNormal(atacante, golpe, defensor) {
-  return Math.max(Math.floor(atacante.ataque * golpe.ataqueGolpe - defensor.defesa), 1);
+  return Math.max(Math.floor(valorEfetivo(atacante, "ataque") * golpe.ataqueGolpe - valorEfetivo(defensor, "defesa")), 1);
 }
 
 function danoElementalSemPiso(atacante, golpe, defensor) {
-  const forca = atacante.ataqueElemento * atacante.afinidade * golpe.afinidadeGolpe;
+  const forca = valorEfetivo(atacante, "ataqueElemento") * atacante.afinidade * golpe.afinidadeGolpe;
   const relacao = relacaoElemento(golpe.elemento, defensor.elemento);
   const forcaAjustada = forca * multiplicadorRelacao[relacao];
-  return Math.floor(forcaAjustada - defensor.defesaElemento);
+  return Math.floor(forcaAjustada - valorEfetivo(defensor, "defesaElemento"));
 }
 
 export function calcularDanoElemental(atacante, golpe, defensor) {

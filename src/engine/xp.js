@@ -34,3 +34,21 @@ export function subirNivel(criatura, random) {
   }
   return atualizado;
 }
+
+export function distribuirXp(total, ativa, participantes) {
+  if (total <= 0) return {};
+  const todos = [...new Set([ativa, ...participantes])];
+  const fracaoAtiva = atributos.nivel.xpAtivaFracao;
+  const parte = (total * (1 - fracaoAtiva)) / todos.length;
+  const resultado = {};
+  for (const p of todos) {
+    resultado[p] = Math.max(Math.floor(parte), 1);
+  }
+  resultado[ativa] = Math.max(Math.floor(total * fracaoAtiva + parte), 1);
+  return resultado;
+}
+export function recompensaBatalha(resultado, nivelInimigo, ativa, participantes) {
+  if (resultado === "jogador") return distribuirXp(xpGanho("vitoria", nivelInimigo), ativa, participantes);
+  if (resultado === "captura") return distribuirXp(xpGanho("captura", nivelInimigo), ativa, participantes);
+  return {};
+}

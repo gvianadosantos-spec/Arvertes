@@ -27,3 +27,9 @@ export function passarTurno(criatura) {
     .filter((e) => e.turnosRestantes > 0);
   return { ...criatura, efeitos };
 }
+
+export function valorEfetivo(criatura, atributo) {
+  const base = criatura[atributo];
+  if (!criatura.efeitos) return base;
+  return base * fatorAtributo(criatura, atributo);
+}
