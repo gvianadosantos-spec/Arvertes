@@ -1,5 +1,4 @@
 import { describe, it, expect } from "vitest";
-import { criarTreinador } from "../src/engine/treinador.js";
 import { criarTreinador, registrarCriatura } from "../src/engine/treinador.js";
 
 describe("criarTreinador: nome", () => {

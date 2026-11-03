@@ -299,6 +299,247 @@
     "chanceAcerto": 33,
     "custoFolego": 6
   },
+
+  {
+    "id": "golpe_gelo_elemental_1",
+    "nome": "Gelo Elemental 1",
+    "tipo": "elemental",
+    "elemento": "Gelo",
+    "ataqueGolpe": 1.25,
+    "afinidadeGolpe": 1,
+    "chanceAcerto": 100,
+    "custoFolego": 4
+  },
+  {
+    "id": "golpe_gelo_elemental_2",
+    "nome": "Gelo Elemental 2",
+    "tipo": "elemental",
+    "elemento": "Gelo",
+    "ataqueGolpe": 0.75,
+    "afinidadeGolpe": 0.5,
+    "chanceAcerto": 66,
+    "custoFolego": 6
+  },
+  {
+    "id": "golpe_gelo_elemental_3",
+    "nome": "Gelo Elemental 3",
+    "tipo": "elemental",
+    "elemento": "Gelo",
+    "ataqueGolpe": 1.05,
+    "afinidadeGolpe": 0.35,
+    "chanceAcerto": 33,
+    "custoFolego": 3
+  },
+  {
+    "id": "golpe_gelo_hibrido_1",
+    "nome": "Gelo Híbrido 1",
+    "tipo": "hibrido",
+    "elemento": "Gelo",
+    "ataqueGolpe": 0.95,
+    "afinidadeGolpe": 1,
+    "chanceAcerto": 100,
+    "custoFolego": 5
+  },
+  {
+    "id": "golpe_gelo_hibrido_2",
+    "nome": "Gelo Híbrido 2",
+    "tipo": "hibrido",
+    "elemento": "Gelo",
+    "ataqueGolpe": 1.3,
+    "afinidadeGolpe": 0.5,
+    "chanceAcerto": 66,
+    "custoFolego": 7
+  },
+  {
+    "id": "golpe_gelo_hibrido_3",
+    "nome": "Gelo Híbrido 3",
+    "tipo": "hibrido",
+    "elemento": "Gelo",
+    "ataqueGolpe": 0.7,
+    "afinidadeGolpe": 0.35,
+    "chanceAcerto": 33,
+    "custoFolego": 4
+  },
+  {
+    "id": "golpe_luz_elemental_1",
+    "nome": "Luz Elemental 1",
+    "tipo": "elemental",
+    "elemento": "Luz",
+    "ataqueGolpe": 0.9,
+    "afinidadeGolpe": 1,
+    "chanceAcerto": 100,
+    "custoFolego": 6
+  },
+  {
+    "id": "golpe_luz_elemental_2",
+    "nome": "Luz Elemental 2",
+    "tipo": "elemental",
+    "elemento": "Luz",
+    "ataqueGolpe": 1.4,
+    "afinidadeGolpe": 0.5,
+    "chanceAcerto": 66,
+    "custoFolego": 3
+  },
+  {
+    "id": "golpe_luz_elemental_3",
+    "nome": "Luz Elemental 3",
+    "tipo": "elemental",
+    "elemento": "Luz",
+    "ataqueGolpe": 0.6,
+    "afinidadeGolpe": 0.35,
+    "chanceAcerto": 33,
+    "custoFolego": 5
+  },
+  {
+    "id": "golpe_luz_hibrido_1",
+    "nome": "Luz Híbrido 1",
+    "tipo": "hibrido",
+    "elemento": "Luz",
+    "ataqueGolpe": 1.1,
+    "afinidadeGolpe": 1,
+    "chanceAcerto": 100,
+    "custoFolego": 4
+  },
+  {
+    "id": "golpe_luz_hibrido_2",
+    "nome": "Luz Híbrido 2",
+    "tipo": "hibrido",
+    "elemento": "Luz",
+    "ataqueGolpe": 0.8,
+    "afinidadeGolpe": 0.5,
+    "chanceAcerto": 66,
+    "custoFolego": 6
+  },
+  {
+    "id": "golpe_luz_hibrido_3",
+    "nome": "Luz Híbrido 3",
+    "tipo": "hibrido",
+    "elemento": "Luz",
+    "ataqueGolpe": 1.45,
+    "afinidadeGolpe": 0.35,
+    "chanceAcerto": 33,
+    "custoFolego": 7
+  },
+  {
+    "id": "golpe_sombra_elemental_1",
+    "nome": "Sombra Elemental 1",
+    "tipo": "elemental",
+    "elemento": "Sombra",
+    "ataqueGolpe": 1.15,
+    "afinidadeGolpe": 1,
+    "chanceAcerto": 100,
+    "custoFolego": 5
+  },
+  {
+    "id": "golpe_sombra_elemental_2",
+    "nome": "Sombra Elemental 2",
+    "tipo": "elemental",
+    "elemento": "Sombra",
+    "ataqueGolpe": 0.65,
+    "afinidadeGolpe": 0.5,
+    "chanceAcerto": 66,
+    "custoFolego": 7
+  },
+  {
+    "id": "golpe_sombra_elemental_3",
+    "nome": "Sombra Elemental 3",
+    "tipo": "elemental",
+    "elemento": "Sombra",
+    "ataqueGolpe": 1.35,
+    "afinidadeGolpe": 0.35,
+    "chanceAcerto": 33,
+    "custoFolego": 4
+  },
+  {
+    "id": "golpe_sombra_hibrido_1",
+    "nome": "Sombra Híbrido 1",
+    "tipo": "hibrido",
+    "elemento": "Sombra",
+    "ataqueGolpe": 0.85,
+    "afinidadeGolpe": 1,
+    "chanceAcerto": 100,
+    "custoFolego": 3
+  },
+  {
+    "id": "golpe_sombra_hibrido_2",
+    "nome": "Sombra Híbrido 2",
+    "tipo": "hibrido",
+    "elemento": "Sombra",
+    "ataqueGolpe": 1.5,
+    "afinidadeGolpe": 0.5,
+    "chanceAcerto": 66,
+    "custoFolego": 5
+  },
+  {
+    "id": "golpe_sombra_hibrido_3",
+    "nome": "Sombra Híbrido 3",
+    "tipo": "hibrido",
+    "elemento": "Sombra",
+    "ataqueGolpe": 0.9,
+    "afinidadeGolpe": 0.35,
+    "chanceAcerto": 33,
+    "custoFolego": 6
+  },
+  {
+    "id": "golpe_fisico_elemental_1",
+    "nome": "Físico Elemental 1",
+    "tipo": "elemental",
+    "elemento": "Fisico",
+    "ataqueGolpe": 1.0,
+    "afinidadeGolpe": 1,
+    "chanceAcerto": 100,
+    "custoFolego": 3
+  },
+  {
+    "id": "golpe_fisico_elemental_2",
+    "nome": "Físico Elemental 2",
+    "tipo": "elemental",
+    "elemento": "Fisico",
+    "ataqueGolpe": 1.25,
+    "afinidadeGolpe": 0.5,
+    "chanceAcerto": 66,
+    "custoFolego": 4
+  },
+  {
+    "id": "golpe_fisico_elemental_3",
+    "nome": "Físico Elemental 3",
+    "tipo": "elemental",
+    "elemento": "Fisico",
+    "ataqueGolpe": 0.8,
+    "afinidadeGolpe": 0.35,
+    "chanceAcerto": 33,
+    "custoFolego": 6
+  },
+  {
+    "id": "golpe_fisico_hibrido_1",
+    "nome": "Físico Híbrido 1",
+    "tipo": "hibrido",
+    "elemento": "Fisico",
+    "ataqueGolpe": 1.35,
+    "afinidadeGolpe": 1,
+    "chanceAcerto": 100,
+    "custoFolego": 7
+  },
+  {
+    "id": "golpe_fisico_hibrido_2",
+    "nome": "Físico Híbrido 2",
+    "tipo": "hibrido",
+    "elemento": "Fisico",
+    "ataqueGolpe": 0.55,
+    "afinidadeGolpe": 0.5,
+    "chanceAcerto": 66,
+    "custoFolego": 5
+  },
+  {
+    "id": "golpe_fisico_hibrido_3",
+    "nome": "Físico Híbrido 3",
+    "tipo": "hibrido",
+    "elemento": "Fisico",
+    "ataqueGolpe": 1.2,
+    "afinidadeGolpe": 0.35,
+    "chanceAcerto": 33,
+    "custoFolego": 3
+  },
   {
     "id": "golpe_normal_1",
     "nome": "Golpe Normal 1",

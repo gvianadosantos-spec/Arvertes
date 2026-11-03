@@ -27,6 +27,8 @@ export function criarOvo(especie, random) {
     diasOvo: 0,
     altura: 0,
     peso: 0,
+        numero: especie.numero,
+    elemento: especie.elemento,
   };
 }
 
@@ -52,5 +54,7 @@ export function chocarOvo(ovo, random) {
     altura: ovo.altura * fatorEclosao,
     peso: ovo.peso,
     diasVida: 0,
+        numero: ovo.numero,
+    elemento: ovo.elemento,
   };
 }

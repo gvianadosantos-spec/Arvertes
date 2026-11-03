@@ -32,3 +32,21 @@ export function createArverte(
     resistencia: sortear("resistencia"),
   };
 }
+
+export function criarCriatura(especie, random, ehJogador = false) {
+  const base = createArverte(especie.nome, random, ehJogador, especie.modificadorAtributos);
+  return {
+    ...base,
+    elemento: especie.elemento,
+    afinidade: especie.afinidade,
+    numero: especie.numero,
+    vidaMaxima: base.vida,
+    folegoMaximo: base.folego,
+    resistenciaMaxima: base.resistencia,
+    nivel: 1,
+    xp: 0,
+    vinculo: 1,
+    efeitos: [],
+    selvagem: false,
+  };
+}

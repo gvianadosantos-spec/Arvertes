@@ -1,6 +1,5 @@
 import regras from "../../data/regras.json" with { type: "json" };
 
-
 const LIMITE = 5;
 
 export function criarGrupo(criaturas) {
@@ -20,13 +19,14 @@ export function adicionarCriatura(grupo, criatura) {
 export function criaturaAtiva(grupo) {
   return grupo.criaturas[grupo.ativa];
 }
+
 export function aplicarResultadoBatalha(grupo, criaturaBatalhada) {
   const criaturas = grupo.criaturas.map((c, i) => (i === grupo.ativa ? criaturaBatalhada : c));
   return { ...grupo, criaturas };
 }
 
 export function recuperarFolegoGrupo(grupo, resultado) {
-  if (resultado !== "vitoria") return grupo;
+  if (resultado !== "jogador") return grupo;
   const criaturas = grupo.criaturas.map((c, i) => {
     if (i !== grupo.ativa) return c;
     const folego = Math.min(c.folego + regras.folego.recuperacaoVitoria, c.folegoMaximo);
@@ -34,6 +34,7 @@ export function recuperarFolegoGrupo(grupo, resultado) {
   });
   return { ...grupo, criaturas };
 }
+
 export function trocarAtiva(grupo, indice) {
   if (indice === grupo.ativa) {
     throw new Error("criatura já está ativa");

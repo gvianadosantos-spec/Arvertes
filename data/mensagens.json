@@ -6,6 +6,13 @@
   "basico": {
     "acertou": "{nome} atacou e causou {dano} de dano."
   },
+  "troca": "{nome} entrou na batalha.",
+  "troca_recusada": "{nome} não pode trocar para essa criatura.",
+  "item": "{nome} usou um item.",
+  "item_recusado": "{nome} tentou usar um item, mas não tem mais.",
+  "captura": "{nome} capturou a criatura!",
+  "captura_falhou": "{nome} tentou capturar, mas a criatura escapou.",
+  "captura_recusada": "{nome} não pode capturar essa criatura.",
   "fuga": "{nome} fugiu da batalha.",
   "fuga_falhou": "{nome} tentou fugir, mas não conseguiu.",
   "relacao": {

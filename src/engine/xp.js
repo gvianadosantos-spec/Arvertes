@@ -14,8 +14,9 @@ export function xpParaProximoNivel(nivel, vinculo) {
 }
 
 export function subirNivel(criatura, random) {
+  const teto = criatura.vinculo * atributos.vinculo.nivelPorVinculo;
   const necessario = xpParaProximoNivel(criatura.nivel, criatura.vinculo);
-  if (criatura.xp < necessario) {
+  if (!(criatura.xp >= necessario) || criatura.nivel >= teto) {
     return criatura;
   }
   const crescimento = {};
@@ -47,6 +48,7 @@ export function distribuirXp(total, ativa, participantes) {
   resultado[ativa] = Math.max(Math.floor(total * fracaoAtiva + parte), 1);
   return resultado;
 }
+
 export function recompensaBatalha(resultado, nivelInimigo, ativa, participantes) {
   if (resultado === "jogador") return distribuirXp(xpGanho("vitoria", nivelInimigo), ativa, participantes);
   if (resultado === "captura") return distribuirXp(xpGanho("captura", nivelInimigo), ativa, participantes);

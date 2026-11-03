@@ -47,7 +47,7 @@ describe("grupo: estado entre batalhas", () => {
 
   it("vitória devolve 1 de fôlego à criatura ativa, sem passar do máximo", () => {
     const grupo = criarGrupo([{ ...criatura("A"), folego: 9, folegoMaximo: 20 }]);
-    const depois = recuperarFolegoGrupo(grupo, "vitoria");
+        const depois = recuperarFolegoGrupo(grupo, "jogador");
     expect(criaturaAtiva(depois).folego).toBe(10);
   });
 

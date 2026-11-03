@@ -2,8 +2,9 @@ export function textoEvento(evento, ctx, modelo) {
   const preencher = (texto, valores) =>
     texto.replace(/\{(\w+)\}/g, (_, chave) => String(valores[chave] ?? ""));
 
-  if (evento.acao === "fuga") return preencher(modelo.fuga, ctx);
-  if (evento.acao === "fuga_falhou") return preencher(modelo.fuga_falhou, ctx);
+  if (typeof modelo[evento.acao] === "string") {
+    return preencher(modelo[evento.acao], ctx);
+  }
 
   if (evento.acao === "basico") {
     return preencher(modelo.basico.acertou, { ...ctx, dano: evento.dano });

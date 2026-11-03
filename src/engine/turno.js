@@ -6,9 +6,11 @@ import { desgastarResistencia, estaNocauteado } from "./resistencia.js";
 import { relacaoElemento } from "./elementos.js";
 import { chanceFuga, tentarFuga } from "./fuga.js";
 import { escolherAcaoRobo } from "./robo.js";
+import { escolherAcaoRoboTreinador } from "./roboTreinador.js";
 import { usarPocao } from "./pocoes.js";
-import { aplicarEfeito, passarTurno } from "./efeitos.js";
+import { aplicarEfeito, passarTurno, valorEfetivo } from "./efeitos.js";
 import { tentarCaptura } from "./captura.js";
+import { usarItem as consumirItem } from "./inventario.js";
 
 const danoDoGolpe = {
   normal: calcularDanoNormal,
@@ -22,12 +24,27 @@ const caiu = (criatura) => criatura.vida === 0 || estaNocauteado(criatura);
 
 const expirar = (criatura) => (criatura.efeitos ? passarTurno(criatura) : criatura);
 
+const velocidadeDe = (criatura) => valorEfetivo(criatura, "velocidade");
+
 const registro = (quem, acao, extra = {}) => ({
   quem, acao, golpeId: null, acertou: false, dano: 0, relacao: null, ...extra,
 });
 
+const identificador = (criatura) => criatura.id ?? criatura.nome;
+
 const incluirParticipante = (lista, criatura) =>
-  (lista.includes(criatura.nome) ? lista : [...lista, criatura.nome]);
+  (lista.includes(identificador(criatura)) ? lista : [...lista, identificador(criatura)]);
+
+const normalizarAcao = (acao) => {
+  if (acao && typeof acao === "object" && acao.tipo === "golpe") return acao.golpe;
+  if (acao && typeof acao === "object" && acao.tipo === "basico") return "basico";
+  return acao;
+};
+
+const escolherAcaoDoRobo = (robo, jogador, golpes, inventario, random) =>
+  (robo.deTreinador
+    ? escolherAcaoRoboTreinador(robo, jogador, golpes, inventario, random)
+    : escolherAcaoRobo(robo, jogador, golpes, random));
 
 function agir(quem, atacante, defensor, acao, random) {
   const escolhido = acao === "basico" ? "basico" : escolherAcao(atacante, acao);
@@ -60,7 +77,7 @@ function agir(quem, atacante, defensor, acao, random) {
   };
 }
 
-function usarItem(quem, outro, estado, item) {
+function aplicarItem(quem, outro, estado, item) {
   if (item.tipo === "pocao") {
     return { ...estado, [quem]: usarPocao(estado[quem], item) };
   }
@@ -70,23 +87,38 @@ function usarItem(quem, outro, estado, item) {
   return { ...estado, [outro]: aplicarEfeito(estado[outro], item) };
 }
 
+const temEstoque = (inventario, id) =>
+  inventario.itens.some((i) => i.id === id && i.quantidade > 0);
+
 export function executarTurno({
-  jogador, robo, acaoJogador, acaoRobo, golpesRobo = [], grupoCheio = false, participantes = null, random,
+  jogador, robo, acaoJogador, acaoRobo, golpesRobo = [], grupoCheio = false, participantes = null, inventario: inventarioInicial = null, tetoNivel = Infinity, random,
 }) {
-  const acoes = { jogador: acaoJogador, robo: acaoRobo ?? escolherAcaoRobo(robo, jogador, golpesRobo, random) };
-  const ordem = jogador.velocidade >= robo.velocidade ? ["jogador", "robo"] : ["robo", "jogador"];
+  const acoes = {
+    jogador: acaoJogador,
+    robo: normalizarAcao(acaoRobo ?? escolherAcaoDoRobo(robo, jogador, golpesRobo, inventarioInicial ?? { itens: [] }, random)),
+  };
+  const ordem = velocidadeDe(jogador) >= velocidadeDe(robo) ? ["jogador", "robo"] : ["robo", "jogador"];
   let estado = { jogador, robo };
+  let inventario = inventarioInicial;
+  let saiu = null;
   const eventos = [];
   let fadigaDelta = 0;
-  let parts = participantes ?? [jogador.nome];
+  let parts = participantes ?? [identificador(jogador)];
 
-  const encerrar = (extra) => ({ ...estado, eventos, fadigaDelta, participantes: parts, ...extra });
+  const encerrar = (extra) => ({ ...estado, eventos, fadigaDelta, participantes: parts, inventario, saiu, ...extra });
 
   for (const quem of ordem) {
     const outro = quem === "jogador" ? "robo" : "jogador";
     const acao = acoes[quem];
 
+       if (caiu(estado[quem])) continue;
+
     if (acao && typeof acao === "object" && acao.tipo === "trocar") {
+      if (caiu(acao.criatura)) {
+        eventos.push(registro(quem, "troca_recusada"));
+        continue;
+      }
+      saiu = desgastarResistencia(estado[quem]);
       estado = { ...estado, [quem]: acao.criatura };
       parts = incluirParticipante(parts, acao.criatura);
       eventos.push(registro(quem, "troca"));
@@ -94,16 +126,30 @@ export function executarTurno({
     }
 
     if (acao && typeof acao === "object" && acao.tipo === "item") {
-      estado = usarItem(quem, outro, estado, acao.item);
+      if (inventario !== null && !temEstoque(inventario, acao.item.id)) {
+        eventos.push(registro(quem, "item_recusado"));
+        continue;
+      }
+      if (inventario !== null) {
+        inventario = consumirItem(inventario, acao.item.id);
+      }
+      estado = { ...estado, [quem]: desgastarResistencia(estado[quem]) };
+      estado = aplicarItem(quem, outro, estado, acao.item);
       eventos.push(registro(quem, "item"));
       continue;
     }
 
     if (acao && typeof acao === "object" && acao.tipo === "captura") {
+      estado = { ...estado, [quem]: desgastarResistencia(estado[quem]) };
       const alvo = estado[outro];
       if (!alvo.selvagem) {
         fadigaDelta += 15;
         eventos.push(registro(quem, "captura_recusada"));
+        continue;
+      }
+      if (alvo.nivel > tetoNivel) {
+        fadigaDelta += 15;
+        eventos.push(registro(quem, "captura_falhou"));
         continue;
       }
       if (tentarCaptura(acao.base, alvo, random, grupoCheio)) {
@@ -116,7 +162,8 @@ export function executarTurno({
     }
 
     if (acao === "fugir") {
-      const chance = chanceFuga(estado[quem].velocidade, estado[outro].velocidade);
+      estado = { ...estado, [quem]: desgastarResistencia(estado[quem]) };
+      const chance = chanceFuga(velocidadeDe(estado[quem]), velocidadeDe(estado[outro]));
       if (tentarFuga(chance, random)) {
         eventos.push(registro(quem, "fuga"));
         return encerrar({ resultado: "fuga" });
@@ -147,6 +194,8 @@ export function executarTurno({
     eventos,
     fadigaDelta,
     participantes: parts,
+    inventario,
+    saiu,
     resultado,
   };
 }
