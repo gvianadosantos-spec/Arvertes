@@ -1,7 +1,9 @@
 import { describe, it, expect } from "vitest";
 import { executarTurno } from "../src/engine/turno.js";
+import { gerarTiposItens, criarInventario } from "../src/engine/inventario.js";
 
 const sorteio = () => 0;
+const inv = () => criarInventario(gerarTiposItens(), 3);
 
 const jogador = (over = {}) => ({
   nome: "Jogador", ehJogador: true, elemento: "Agua", afinidade: 1,
@@ -22,11 +24,9 @@ const debuffDefesaMedio = { id: "debuff_defesa_normal_medio", tipo: "debuff", at
 describe("usar item no turno", () => {
   it("usar item gasta a vez: o jogador não ataca, e o robô ataca normalmente", () => {
     const r = executarTurno({
-      jogador: jogador({ vida: 10 }),
-      robo: robo(),
+      jogador: jogador({ vida: 10 }), robo: robo(),
       acaoJogador: { tipo: "item", item: pocaoVida60 },
-      acaoRobo: "basico",
-      random: sorteio,
+      acaoRobo: "basico", inventario: inv(), random: sorteio,
     });
     expect(r.robo.vida).toBe(30);
     expect(r.jogador.vida).toBe(30);
@@ -35,22 +35,18 @@ describe("usar item no turno", () => {
 
   it("pocão não passa do máximo", () => {
     const r = executarTurno({
-      jogador: jogador({ vida: 40 }),
-      robo: robo(),
+      jogador: jogador({ vida: 40 }), robo: robo(),
       acaoJogador: { tipo: "item", item: pocaoVida60 },
-      acaoRobo: "basico",
-      random: sorteio,
+      acaoRobo: "basico", inventario: inv(), random: sorteio,
     });
     expect(r.jogador.vida).toBe(37);
   });
 
   it("buff vai para quem usa e dura o tamanho do item (3 turnos: sobra 2 depois da primeira rodada)", () => {
     const r = executarTurno({
-      jogador: jogador(),
-      robo: robo(),
+      jogador: jogador(), robo: robo(),
       acaoJogador: { tipo: "item", item: buffAtaquePequeno },
-      acaoRobo: "basico",
-      random: sorteio,
+      acaoRobo: "basico", inventario: inv(), random: sorteio,
     });
     expect(r.jogador.efeitos).toHaveLength(1);
     expect(r.jogador.efeitos[0].turnosRestantes).toBe(2);
@@ -59,11 +55,9 @@ describe("usar item no turno", () => {
 
   it("debuff vai para o adversário e dura o tamanho do item (5 turnos: sobra 4)", () => {
     const r = executarTurno({
-      jogador: jogador(),
-      robo: robo(),
+      jogador: jogador(), robo: robo(),
       acaoJogador: { tipo: "item", item: debuffDefesaMedio },
-      acaoRobo: "basico",
-      random: sorteio,
+      acaoRobo: "basico", inventario: inv(), random: sorteio,
     });
     expect(r.jogador.efeitos).toHaveLength(0);
     expect(r.robo.efeitos).toHaveLength(1);
@@ -72,11 +66,9 @@ describe("usar item no turno", () => {
 
   it("buff de 3 turnos some depois de 3 rodadas", () => {
     const r1 = executarTurno({
-      jogador: jogador(),
-      robo: robo(),
+      jogador: jogador(), robo: robo(),
       acaoJogador: { tipo: "item", item: buffAtaquePequeno },
-      acaoRobo: "basico",
-      random: sorteio,
+      acaoRobo: "basico", inventario: inv(), random: sorteio,
     });
     const r2 = executarTurno({ jogador: r1.jogador, robo: r1.robo, acaoJogador: "basico", acaoRobo: "basico", random: sorteio });
     const r3 = executarTurno({ jogador: r2.jogador, robo: r2.robo, acaoJogador: "basico", acaoRobo: "basico", random: sorteio });

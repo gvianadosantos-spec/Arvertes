@@ -15,25 +15,28 @@ export function xpParaProximoNivel(nivel, vinculo) {
 
 export function subirNivel(criatura, random) {
   const teto = criatura.vinculo * atributos.vinculo.nivelPorVinculo;
-  const necessario = xpParaProximoNivel(criatura.nivel, criatura.vinculo);
-  if (!(criatura.xp >= necessario) || criatura.nivel >= teto) {
-    return criatura;
+  let atual = criatura;
+  while (true) {
+    const necessario = xpParaProximoNivel(atual.nivel, atual.vinculo);
+    if (!(atual.xp >= necessario) || atual.nivel >= teto) {
+      return atual;
+    }
+    const crescimento = {};
+    for (const atributo of Object.keys(atributos.atributos)) {
+      const { min, max } = atributos.atributos[atributo].porNivel;
+      crescimento[atributo] = sortearEntre(random, min, max);
+    }
+    const proximo = {
+      ...atual,
+      nivel: atual.nivel + 1,
+      xp: atual.xp - necessario,
+      crescimento,
+    };
+    for (const atributo of Object.keys(crescimento)) {
+      proximo[atributo] = atual[atributo] + crescimento[atributo];
+    }
+    atual = proximo;
   }
-  const crescimento = {};
-  for (const atributo of Object.keys(atributos.atributos)) {
-    const { min, max } = atributos.atributos[atributo].porNivel;
-    crescimento[atributo] = sortearEntre(random, min, max);
-  }
-  const atualizado = {
-    ...criatura,
-    nivel: criatura.nivel + 1,
-    xp: criatura.xp - necessario,
-    crescimento,
-  };
-  for (const atributo of Object.keys(crescimento)) {
-    atualizado[atributo] = criatura[atributo] + crescimento[atributo];
-  }
-  return atualizado;
 }
 
 export function distribuirXp(total, ativa, participantes) {

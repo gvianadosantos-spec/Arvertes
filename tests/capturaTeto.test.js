@@ -7,14 +7,14 @@ const robo = { ...base, nome: "Robo" };
 
 describe("captura e teto de vínculo", () => {
   it("criatura acima do teto não é capturada", () => {
-    const r = executarTurno({ jogador, robo: { ...robo, nivel: 60 }, acaoJogador: { tipo: "captura", base: 20 }, acaoRobo: "basico", tetoNivel: 50, random: () => 0 });
+    const r = executarTurno({ jogador, robo: { ...robo, nivel: 60 }, acaoJogador: { tipo: "captura", base: 20 }, acaoRobo: "basico", tetoNivel: 50, grupoCheio: false, random: () => 0 });
     expect(r.resultado).toBeNull();
     expect(r.eventos.find((e) => e.quem === "jogador").acao).toBe("captura_falhou");
     expect(r.fadigaDelta).toBe(15);
   });
 
   it("criatura dentro do teto pode ser capturada", () => {
-    const r = executarTurno({ jogador, robo: { ...robo, nivel: 40 }, acaoJogador: { tipo: "captura", base: 20 }, acaoRobo: "basico", tetoNivel: 50, random: () => 0 });
+    const r = executarTurno({ jogador, robo: { ...robo, nivel: 40 }, acaoJogador: { tipo: "captura", base: 20 }, acaoRobo: "basico", tetoNivel: 50, grupoCheio: false, random: () => 0 });
     expect(r.resultado).toBe("captura");
   });
 });

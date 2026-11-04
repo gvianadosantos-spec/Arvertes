@@ -26,11 +26,9 @@ const golpeNormal = { id: "g_normal", tipo: "normal", ataqueGolpe: 1, afinidadeG
 describe("troca no turno", () => {
   it("trocar gasta o turno: a criatura que entra não ataca nessa rodada, e o robô ataca a reserva", () => {
     const r = executarTurno({
-      jogador: jogador(),
-      robo: robo(),
+      jogador: jogador(), robo: robo(), grupo: [jogador(), reserva],
       acaoJogador: { tipo: "trocar", criatura: reserva },
-      acaoRobo: "basico",
-      random: acerta,
+      acaoRobo: "basico", random: acerta,
     });
     expect(r.jogador.nome).toBe("Reserva");
     expect(r.robo.vida).toBe(30);
@@ -41,18 +39,13 @@ describe("troca no turno", () => {
 
   it("a criatura que entrou age na rodada seguinte", () => {
     const trocou = executarTurno({
-      jogador: jogador(),
-      robo: robo(),
+      jogador: jogador(), robo: robo(), grupo: [jogador(), reserva],
       acaoJogador: { tipo: "trocar", criatura: reserva },
-      acaoRobo: "basico",
-      random: acerta,
+      acaoRobo: "basico", random: acerta,
     });
     const seguinte = executarTurno({
-      jogador: trocou.jogador,
-      robo: trocou.robo,
-      acaoJogador: golpeNormal,
-      acaoRobo: "basico",
-      random: acerta,
+      jogador: trocou.jogador, robo: trocou.robo, grupo: [trocou.jogador, jogador()],
+      acaoJogador: golpeNormal, acaoRobo: "basico", random: acerta,
     });
     expect(seguinte.robo.vida).toBeLessThan(trocou.robo.vida);
   });

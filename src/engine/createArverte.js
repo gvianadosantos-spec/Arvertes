@@ -46,6 +46,7 @@ export function criarCriatura(especie, random, ehJogador = false) {
     nivel: 1,
     xp: 0,
     vinculo: 1,
+     diasVida: 0,
     efeitos: [],
     selvagem: false,
   };

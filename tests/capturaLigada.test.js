@@ -10,7 +10,10 @@ const selvagem = () => ({ ...criarCriatura(especie, () => 0.5), selvagem: true, 
 describe("captura do turno entra no grupo do treinador", () => {
   it("a criatura capturada volta no resultado do turno para ser colocada no grupo", () => {
     const t = criarTreinador({ nome: "Zé", dataNascimento: "0202" });
-    const r = executarTurno({ jogador: jogadorCriado(), robo: selvagem(), acaoJogador: { tipo: "captura", base: 20 }, acaoRobo: "basico", random: () => 0 });
+    const r = executarTurno({
+      jogador: jogadorCriado(), robo: selvagem(), acaoJogador: { tipo: "captura", base: 20 },
+      acaoRobo: "basico", tetoNivel: 100, grupoCheio: false, random: () => 0,
+    });
     const depois = capturarCriatura(t, r.capturada);
     expect(depois.grupo.criaturas).toHaveLength(1);
     expect(depois.grupo.criaturas[0].id).toBe("0111");

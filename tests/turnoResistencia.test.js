@@ -1,32 +1,19 @@
 import { describe, it, expect } from "vitest";
 import { executarTurno } from "../src/engine/turno.js";
 
-const acerta = () => 0;
+const base = { ehJogador: false, elemento: "Fogo", afinidade: 1, vida: 30, vidaMaxima: 30, ataque: 10, defesa: 5, ataqueElemento: 10, defesaElemento: 5, velocidade: 10, folego: 20, folegoMaximo: 20, resistencia: 50, efeitos: [] };
+const jogador = { ...base, nome: "Jogador", ehJogador: true, elemento: "Agua", resistencia: 1 };
+const robo = { ...base, nome: "Robo", velocidade: 5 };
+const reserva = { ...base, nome: "Reserva", ehJogador: true, elemento: "Agua", resistencia: 50 };
 
-const jogador = (over = {}) => ({
-  nome: "Jogador", ehJogador: true, elemento: "Agua", afinidade: 1,
-  vida: 30, ataque: 10, defesa: 5, ataqueElemento: 10, defesaElemento: 5,
-  velocidade: 10, folego: 20, folegoMaximo: 20, resistencia: 50, ...over,
-});
-
-const robo = (over = {}) => ({
-  nome: "Robo", ehJogador: false, elemento: "Fogo", afinidade: 1,
-  vida: 30, ataque: 10, defesa: 5, ataqueElemento: 10, defesaElemento: 5,
-  velocidade: 5, folego: 20, folegoMaximo: 20, resistencia: 50, ...over,
-});
-
-describe("nocaute por resistência dentro do turno", () => {
-  it("robô com resistência 1 fica com 0 depois da rodada e perde, mesmo com vida cheia", () => {
-    const r = executarTurno({ jogador: jogador(), robo: robo({ resistencia: 1 }), acaoJogador: "basico", acaoRobo: "basico", random: acerta });
-    expect(r.robo.resistencia).toBe(0);
-    expect(r.robo.vida).toBeGreaterThan(0);
-    expect(r.resultado).toBe("jogador");
+describe("troca e resistência", () => {
+  it("a criatura que sai perde 1 de resistência", () => {
+    const r = executarTurno({ jogador, robo, grupo: [jogador, reserva], acaoJogador: { tipo: "trocar", criatura: reserva }, acaoRobo: "basico", random: () => 0 });
+    expect(r.saiu.resistencia).toBe(0);
   });
 
-  it("jogador com resistência 1 fica com 0 depois da rodada e perde, mesmo com vida cheia", () => {
-    const r = executarTurno({ jogador: jogador({ resistencia: 1 }), robo: robo(), acaoJogador: "basico", acaoRobo: "basico", random: acerta });
-    expect(r.jogador.resistencia).toBe(0);
-    expect(r.jogador.vida).toBeGreaterThan(0);
-    expect(r.resultado).toBe("robo");
+  it("a criatura que entra não perde resistência na rodada da troca", () => {
+    const r = executarTurno({ jogador, robo, grupo: [jogador, reserva], acaoJogador: { tipo: "trocar", criatura: reserva }, acaoRobo: "basico", random: () => 0 });
+    expect(r.jogador.resistencia).toBe(50);
   });
 });

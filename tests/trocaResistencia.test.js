@@ -8,12 +8,12 @@ const reserva = { ...base, nome: "Reserva", ehJogador: true, elemento: "Agua", r
 
 describe("troca e resistência", () => {
   it("a criatura que sai perde 1 de resistência", () => {
-    const r = executarTurno({ jogador, robo, acaoJogador: { tipo: "trocar", criatura: reserva }, acaoRobo: "basico", random: () => 0 });
+    const r = executarTurno({ jogador, robo, grupo: [jogador, reserva], acaoJogador: { tipo: "trocar", criatura: reserva }, acaoRobo: "basico", random: () => 0 });
     expect(r.saiu.resistencia).toBe(0);
   });
 
   it("a criatura que entra não perde resistência na rodada da troca", () => {
-    const r = executarTurno({ jogador, robo, acaoJogador: { tipo: "trocar", criatura: reserva }, acaoRobo: "basico", random: () => 0 });
+    const r = executarTurno({ jogador, robo, grupo: [jogador, reserva], acaoJogador: { tipo: "trocar", criatura: reserva }, acaoRobo: "basico", random: () => 0 });
     expect(r.jogador.resistencia).toBe(50);
   });
 });

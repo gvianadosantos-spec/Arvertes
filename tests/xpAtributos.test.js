@@ -6,11 +6,13 @@ const especie = { nome: "Fogo 1", numero: 1, elemento: "Fogo", afinidade: 1, mod
 const sorteioMinimo = () => 0;
 
 describe("subirNivel atualiza os atributos de combate", () => {
-  it("cada atributo aumenta exatamente pelo crescimento sorteado", () => {
+  it("cada atributo aumenta 1 por nível ganho quando o sorteio é mínimo", () => {
     const antes = criarCriatura(especie, sorteioMinimo);
     const depois = subirNivel({ ...antes, xp: 10000 }, sorteioMinimo);
-    expect(depois.vida).toBe(antes.vida + depois.crescimento.vida);
-    expect(depois.resistencia).toBe(antes.resistencia + depois.crescimento.resistencia);
+    const niveisGanhos = depois.nivel - antes.nivel;
+    expect(niveisGanhos).toBeGreaterThan(1);
+    expect(depois.vida).toBe(antes.vida + niveisGanhos);
+    expect(depois.resistencia).toBe(antes.resistencia + niveisGanhos);
   });
 
   it("o crescimento de cada atributo está dentro da faixa porNivel (1 a 10)", () => {

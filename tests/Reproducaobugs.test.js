@@ -53,7 +53,7 @@ describe("reprodução: turno", () => {
   it("participantes distinguem criaturas com o mesmo nome", () => {
     const ativa = { ...jogador, id: "0111" };
     const reserva = { ...jogador, id: "0112", vida: 25 };
-    const r = executarTurno({ jogador: ativa, robo, acaoJogador: { tipo: "trocar", criatura: reserva }, acaoRobo: "basico", random: () => 0 });
+    const r = executarTurno({ jogador: ativa, robo, grupo: [ativa, reserva], acaoJogador: { tipo: "trocar", criatura: reserva }, acaoRobo: "basico", random: () => 0 });
     expect(r.participantes).toEqual(["0111", "0112"]);
   });
 });

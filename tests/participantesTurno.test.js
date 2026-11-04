@@ -29,7 +29,7 @@ describe("participantes da batalha", () => {
 
   it("troca adiciona a criatura que entra à lista", () => {
     const r = executarTurno({
-      jogador: jogador(), robo: robo(),
+      jogador: jogador(), robo: robo(), grupo: [jogador(), reserva],
       acaoJogador: { tipo: "trocar", criatura: reserva },
       acaoRobo: "basico", random: acerta,
     });
@@ -38,7 +38,7 @@ describe("participantes da batalha", () => {
 
   it("trocar para criatura que já participou não duplica", () => {
     const r = executarTurno({
-      jogador: jogador(), robo: robo(),
+      jogador: jogador(), robo: robo(), grupo: [jogador(), reserva],
       acaoJogador: { tipo: "trocar", criatura: reserva },
       acaoRobo: "basico", participantes: ["Jogador", "Reserva"], random: acerta,
     });
@@ -47,7 +47,7 @@ describe("participantes da batalha", () => {
 
   it("a lista recebida é mantida e a nova criatura entra no fim", () => {
     const r = executarTurno({
-      jogador: jogador(), robo: robo(),
+      jogador: jogador(), robo: robo(), grupo: [jogador(), reserva],
       acaoJogador: { tipo: "trocar", criatura: reserva },
       acaoRobo: "basico", participantes: ["Jogador", "Outro"], random: acerta,
     });

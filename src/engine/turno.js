@@ -87,34 +87,46 @@ function aplicarItem(quem, outro, estado, item) {
   return { ...estado, [outro]: aplicarEfeito(estado[outro], item) };
 }
 
-const temEstoque = (inventario, id) =>
-  inventario.itens.some((i) => i.id === id && i.quantidade > 0);
-
 export function executarTurno({
-  jogador, robo, acaoJogador, acaoRobo, golpesRobo = [], grupoCheio = false, participantes = null, inventario: inventarioInicial = null, tetoNivel = Infinity, random,
+  jogador, robo, acaoJogador, acaoRobo, golpesRobo = [], grupoCheio, participantes = null, grupo = [],
+  inventario: inventarioInicial, inventarioRobo: inventarioRoboInicial, tetoNivel, random,
 }) {
   const acoes = {
     jogador: acaoJogador,
-    robo: normalizarAcao(acaoRobo ?? escolherAcaoDoRobo(robo, jogador, golpesRobo, inventarioInicial ?? { itens: [] }, random)),
+    robo: normalizarAcao(acaoRobo ?? escolherAcaoDoRobo(robo, jogador, golpesRobo, inventarioRoboInicial ?? { itens: [] }, random)),
   };
   const ordem = velocidadeDe(jogador) >= velocidadeDe(robo) ? ["jogador", "robo"] : ["robo", "jogador"];
   let estado = { jogador, robo };
   let inventario = inventarioInicial;
+  let invRobo = inventarioRoboInicial;
   let saiu = null;
   const eventos = [];
   let fadigaDelta = 0;
   let parts = participantes ?? [identificador(jogador)];
 
-  const encerrar = (extra) => ({ ...estado, eventos, fadigaDelta, participantes: parts, inventario, saiu, ...extra });
+  const encerrar = (extra) => ({
+    ...estado,
+    jogador: expirar(estado.jogador),
+    robo: expirar(estado.robo),
+    eventos,
+    fadigaDelta,
+    participantes: parts,
+    inventario,
+    inventarioRobo: invRobo,
+    saiu,
+    ...extra,
+  });
 
   for (const quem of ordem) {
     const outro = quem === "jogador" ? "robo" : "jogador";
     const acao = acoes[quem];
 
-       if (caiu(estado[quem])) continue;
+    if (caiu(estado[quem])) continue;
 
     if (acao && typeof acao === "object" && acao.tipo === "trocar") {
-      if (caiu(acao.criatura)) {
+      const ehDoGrupo = grupo.some((c) => identificador(c) === identificador(acao.criatura));
+      const ehAtiva = identificador(acao.criatura) === identificador(estado[quem]);
+      if (caiu(acao.criatura) || ehAtiva || !ehDoGrupo) {
         eventos.push(registro(quem, "troca_recusada"));
         continue;
       }
@@ -126,15 +138,17 @@ export function executarTurno({
     }
 
     if (acao && typeof acao === "object" && acao.tipo === "item") {
-      if (inventario !== null && !temEstoque(inventario, acao.item.id)) {
+      const inv = quem === "jogador" ? inventario : invRobo;
+      const armazenado = inv?.itens.find((i) => i.id === acao.item.id && i.quantidade > 0);
+      if (!armazenado) {
         eventos.push(registro(quem, "item_recusado"));
         continue;
       }
-      if (inventario !== null) {
-        inventario = consumirItem(inventario, acao.item.id);
-      }
+      const novoInv = consumirItem(inv, armazenado.id);
+      if (quem === "jogador") inventario = novoInv;
+      else invRobo = novoInv;
       estado = { ...estado, [quem]: desgastarResistencia(estado[quem]) };
-      estado = aplicarItem(quem, outro, estado, acao.item);
+      estado = aplicarItem(quem, outro, estado, armazenado);
       eventos.push(registro(quem, "item"));
       continue;
     }
@@ -147,12 +161,13 @@ export function executarTurno({
         eventos.push(registro(quem, "captura_recusada"));
         continue;
       }
-      if (alvo.nivel > tetoNivel) {
+      const dentroDoTeto = tetoNivel !== undefined && alvo.nivel <= tetoNivel;
+      if (grupoCheio !== false || !dentroDoTeto) {
         fadigaDelta += 15;
         eventos.push(registro(quem, "captura_falhou"));
         continue;
       }
-      if (tentarCaptura(acao.base, alvo, random, grupoCheio)) {
+      if (tentarCaptura(acao.base, alvo, random, false)) {
         eventos.push(registro(quem, "captura"));
         return encerrar({ fadigaDelta: fadigaDelta + 5, resultado: "captura", capturada: alvo });
       }
@@ -177,7 +192,8 @@ export function executarTurno({
     eventos.push(r.evento);
 
     if (estado[outro].vida === 0) {
-      return encerrar({ resultado: quem });
+      const atacanteCaiu = caiu(estado[quem]);
+      return encerrar({ resultado: atacanteCaiu ? "robo" : quem });
     }
   }
 
@@ -195,7 +211,20 @@ export function executarTurno({
     fadigaDelta,
     participantes: parts,
     inventario,
+    inventarioRobo: invRobo,
     saiu,
     resultado,
   };
+}
+
+export function executarTurnoComTreinador({ treinador, jogador, robo, acaoJogador, acaoRobo, golpesRobo = [], participantes = null, inventario, inventarioRobo, random }) {
+  const tetoNivel = treinador.grupo.criaturas.length === 0
+    ? 50
+    : treinador.grupo.criaturas[0].vinculo * 50;
+  const grupoCheio = treinador.grupo.criaturas.length >= 5;
+  return executarTurno({
+    jogador, robo, acaoJogador, acaoRobo, golpesRobo, participantes,
+    grupo: treinador.grupo.criaturas,
+    grupoCheio, tetoNivel, inventario, inventarioRobo, random,
+  });
 }
